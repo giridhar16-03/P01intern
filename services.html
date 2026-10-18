@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - FrameStory Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        body {
+            /* Allow scrolling for the services page */
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh;
+        }
+
+        .service-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            /* Using the newly uploaded background */
+            background: url('images/service-bg2.jpg') center center / cover no-repeat;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 160px 5% 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .service-price {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .book-now-btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--text-primary);
+            color: var(--bg-parchment, #f0ebe1);
+            text-decoration: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            border-radius: 4px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .book-now-btn:hover {
+            background: #4a4640;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="transition-curtain" id="curtain"></div>
+
+    <!-- Service Background -->
+    <div class="service-bg"></div>
+
+    <!-- Header identical to homepage -->
+    <header class="navbar" style="z-index: 100;">
+        <div class="nav-container">
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Collection</a>
+                <a href="services.html" class="active">Services</a>
+            </nav>
+            <div class="nav-credits">
+                FrameStory Studio
+            </div>
+        </div>
+    </header>
+
+    <main class="services-container">
+        
+        <div class="service-card">
+            <h3>Wedding Photography</h3>
+            <p>Comprehensive coverage of your special day, capturing every fleeting emotion, timeless ritual, and joyful celebration with artistic precision.</p>
+            <span class="service-price">Starting at YO</span>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Pre-Wedding Shoots</h3>
+            <p>A beautifully orchestrated couple's portrait session in cinematic locations, telling the story of your romance before the big day.</p>
+            <span class="service-price">Starting at YO</span>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <h3>Event Cinematography</h3>
+            <p>High-definition video coverage bringing your events to life. We craft cinematic short films that preserve the mood and memories perfectly.</p>
+            <span class="service-price">Starting at YO</span>
+            <a href="#" class="book-now-btn">Book Now</a>
+        </div>
+
+    </main>
+
+    <script src="js/transition.js"></script>
+</body>
+</html>
+
+
+

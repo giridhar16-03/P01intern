@@ -1,0 +1,311 @@
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #f4ebd8;
+    /* Light parchment cream */
+    --text-primary: #313927;
+    /* Dark olive text */
+    --text-secondary: rgba(49, 57, 39, 0.55);
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-para: 'Space Grotesk', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: url('../images/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-primary);
+    font-family: var(--font-para);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+}
+
+/* Navigation - Floating Top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    padding: 2rem 3rem;
+    pointer-events: none;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    pointer-events: auto;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-credits {
+    pointer-events: auto;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+/* Main Container */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* Hero Titles - Center Floating */
+.hero-titles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    text-align: center;
+    pointer-events: none;
+}
+
+.hero-titles h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+}
+
+.hero-titles p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+/* Bottom Controls */
+.bottom-controls {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    pointer-events: auto;
+}
+
+.controls-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    border: 1px solid var(--text-primary);
+    background: transparent;
+}
+
+.controls-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-family: var(--font-para);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+}
+
+.view-btn:hover {
+    background: rgba(49, 57, 39, 0.1);
+}
+
+.view-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+/* Hero CTAs */
+.hero-ctas {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cta-btn {
+    padding: 0.8rem 2rem;
+    font-family: var(--font-para);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    border: 1px solid var(--text-primary);
+}
+
+.primary-btn:hover {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+}
+
+.secondary-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-color);
+}
+
+/* Featured Work */
+.featured-work {
+    padding: 6rem 3rem;
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-card {
+    display: block;
+    width: 200px;
+    text-decoration: none;
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.category-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: sepia(0.3);
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+    filter: sepia(0);
+}
+
+.category-card span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+}
+
+/* ================================================= */
+/* THE TRANSITION CURTAIN                            */
+/* ================================================= */
+.transition-curtain {
+  position: fixed;
+  top: -15vh;
+  left: -5vw;
+  width: 110vw;
+  height: 130vh;
+  background-color: #1f2d24; /* Deep Pahari Moss Green */
+  z-index: 9999;
+  border-radius: 50% / 15vh; /* Creates a smooth curve on top and bottom */
+  transform: translateY(0); /* Cover screen on load */
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ================================================= */
+/* FOOTER CREDITS                                    */
+/* ================================================= */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px 5%;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.footer-credits {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}

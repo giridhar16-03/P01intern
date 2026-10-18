@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection - FrameStory Studio</title>
+
+    <!-- Cormorant Garamond & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg-parchment: #f0ebe1;
+            --text-primary: #272522;
+            --text-secondary: #5e5950;
+            --text-muted: #8d8679;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-parchment);
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh;
+        }
+
+        /* Fixed Paper Texture Background */
+        .bg-texture {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background: url('images/bg-collection.jpg') center center / cover no-repeat;
+        }
+
+        /* Horizontal Pinned Container */
+        .scroll-track-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .horizontal-slider {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            height: 100vh;
+            width: 500vw;
+            /* 5 slides x 100vw */
+            will-change: transform;
+        }
+
+        /* Each Slide is a full screen section */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10vw;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .slide-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 8vw;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        /* CSS Order explicitly handles text vs image placement */
+        .slide-text {
+            max-width: 420px;
+            position: relative;
+            order: 1;
+            /* Default: Text Left */
+        }
+
+        .slide-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            order: 2;
+            /* Default: Image Right */
+        }
+
+        /* Reversed slide swaps the order */
+        .slide.reverse .slide-text {
+            order: 2;
+            /* Reversed: Text Right */
+        }
+
+        .slide.reverse .slide-media {
+            order: 1;
+            /* Reversed: Image Left */
+        }
+
+        /* Typography */
+        .slide-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .slide-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .slide-desc {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.85;
+            letter-spacing: 0.02em;
+        }
+
+        /* Artwork Media Presentation - Borderless */
+        .artwork-box {
+            width: 320px;
+            height: 450px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            border-radius: 4px;
+            transition: transform 0.4s ease;
+        }
+
+        .artwork-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .artwork-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="transition-curtain" id="curtain"></div>
+    <!-- Layered Background Texture -->
+    <div class="bg-texture"></div>
+
+    <!-- Header identical to homepage -->
+    <header class="navbar" style="z-index: 100;">
+        <div class="nav-container">
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Collection</a>
+                <a href="services.html">Services</a>
+            </nav>
+            <div class="nav-credits">
+                FrameStory Studio
+            </div>
+        </div>
+    </header>
+
+    <!-- Outer Pin Wrapper -->
+    <div class="scroll-track-wrapper" id="scrollTrack">
+        <div class="horizontal-slider" id="slider">
+
+            <!-- 01 -->
+            <section class="slide">
+                <div class="slide-inner">
+                    <div class="slide-text">
+                        <span class="slide-number">Event #01</span>
+                        <h2 class="slide-title">Wedding Ceremonies</h2>
+                        <p class="slide-desc">Photo clicked on: Oct 7, 2026</p>
+                    </div>
+                    <div class="slide-media">
+                        <div class="artwork-box">
+                            <img src="images/luffy2.jpg" alt="Photography">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 (Standard layout) -->
+            <section class="slide">
+                <div class="slide-inner">
+                    <div class="slide-text">
+                        <span class="slide-number">Event #02</span>
+                        <h2 class="slide-title">Pre-Wedding Shoots</h2>
+                        <p class="slide-desc">Photo clicked on: Oct 8, 2026</p>
+                    </div>
+                    <div class="slide-media">
+                        <div class="artwork-box">
+                            <img src="images/luffy2.jpg" alt="Photography">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 -->
+            <section class="slide">
+                <div class="slide-inner">
+                    <div class="slide-text">
+                        <span class="slide-number">Event #03</span>
+                        <h2 class="slide-title">Candid Moments</h2>
+                        <p class="slide-desc">Photo clicked on: Oct 9, 2026</p>
+                    </div>
+                    <div class="slide-media">
+                        <div class="artwork-box">
+                            <img src="images/luffy2.jpg" alt="Photography">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 04 (Standard layout) -->
+            <section class="slide">
+                <div class="slide-inner">
+                    <div class="slide-text">
+                        <span class="slide-number">Event #04</span>
+                        <h2 class="slide-title">Couple Portraits</h2>
+                        <p class="slide-desc">Photo clicked on: Oct 10, 2026</p>
+                    </div>
+                    <div class="slide-media">
+                        <div class="artwork-box">
+                            <img src="images/luffy2.jpg" alt="Photography">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 -->
+            <section class="slide">
+                <div class="slide-inner">
+                    <div class="slide-text">
+                        <span class="slide-number">Event #05</span>
+                        <h2 class="slide-title">Haldi Celebrations</h2>
+                        <p class="slide-desc">Photo clicked on: Oct 11, 2026</p>
+                    </div>
+                    <div class="slide-media">
+                        <div class="artwork-box">
+                            <img src="images/luffy2.jpg" alt="Photography">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const slider = document.getElementById("slider");
+        const slides = gsap.utils.toArray(".slide");
+
+        // Horizontal scroll calculation fixed to prevent empty space overshoot
+        const scrollTween = gsap.to(slider, {
+            x: () => -(slider.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#scrollTrack",
+                pin: true,
+                scrub: 1, // smooth scroll-wheel sync
+                end: () => "+=" + (slider.scrollWidth - window.innerWidth)
+            }
+        });
+
+        // Initial animation for the first slide (which is already on screen)
+        gsap.from(slides[0].querySelector(".slide-text"), { y: 40, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.2 });
+        gsap.from(slides[0].querySelector(".slide-media"), { scale: 0.9, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
+
+        // Scroll animations for all subsequent slides
+        slides.forEach((slide, i) => {
+            if (i === 0) return;
+
+            // Text slides up and fades in
+            gsap.from(slide.querySelector(".slide-text"), {
+                y: 60,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: slide,
+                    containerAnimation: scrollTween,
+                    start: "left 80%", // Trigger when slide enters 20% into the screen
+                    end: "center center",
+                    scrub: 1
+                }
+            });
+
+            // Image scales up and fades in
+            gsap.from(slide.querySelector(".slide-media"), {
+                scale: 0.8,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: slide,
+                    containerAnimation: scrollTween,
+                    start: "left 80%",
+                    end: "center center",
+                    scrub: 1
+                }
+            });
+        });
+    </script>
+    <script src="js/transition.js"></script>
+</body>
+
+</html>
